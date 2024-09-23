@@ -491,3 +491,46 @@ Rol y Departamento presentan redundancia de datos, por lo que se creará otra en
 
 ##### 3FN
 Los datos cumplen con la Tercera Formal Normal.
+
+### ENTIDADES
+Luego de llevar a cabo el proceso de normalización, se obtuvieron las siguiente entidades:
+
+* Cliente
+* Cuenta
+* Tipo cuenta
+* Transacción
+* Tipo transacción
+* Préstamo
+* Estado préstamo
+* Tarjeta crédito
+* Estado tarjeta
+* Punto servicio
+* Tipo
+* Departamento
+* Municipio
+* Código postal
+* Ubicación
+* Empleado
+* Rol
+
+### DIAGRAMA MATRICIAL
+
+| ENTIDADES | Cliente | Cuenta | Tipo cuenta | Transacción | Tipo transacción | Préstamo | Estado préstamo | Tarjeta crédito | Estado tarjeta | Punto servicio | Tipo | Departamento | Municipio | Código postal | Ubicación | Empleado | Rol |
+|:---------:|:-------:|:------:|:-----------:|:-----------:|:----------------:|:--------:|:---------------:|:---------------:|:--------------:|:--------------:|:----:|:------------:|:---------:|:-------------:|:---------:|:--------:|:---:|
+|Cliente|-|tener|-|realizar|-|realizar|-|tener|-|-|-|-|-|-|-|-|-|
+|Cuenta|pertenecer a|-|tener|estar asociada a|-|-|-|-|-|-|-|-|-|-|-|-|-|
+|Tipo cuenta|-|clasificar|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
+|Transacción|ser realizada por|contener|-|-|tener|-|-|-|-|generarse en|-|-|-|-|-|-|-|
+|Tipo transacción|-|-|-|clasificar|-|-|-|-|-|-|-|-|-|-|-|-|-|
+|Préstamo|ser realizado por|-|-|-|-|-|tener|-|-|-|-|-|-|-|-|-|-|
+|Estado préstamo|-|-|-|-|-|clasificar|-|-|-|-|-|-|-|-|-|-|-|
+|Tarjeta crédito|pertenecer a|-|-|-|-|-|-|-|tener|-|-|-|-|-|-|-|-|
+|Estado tarjeta|-|-|-|-|-|-|-|clasificar|-|-|-|-|-|-|-|-|-|
+|Punto servicio|-|-|-|generar|-|-|-|-|-|-|tener|-|-|-|tener|contener|-|
+|Tipo|-|-|-|-|-|-|-|-|-|clasificar|-|-|-|-|-|-|-|
+|Departamento|-|-|-|-|-|-|-|-|-|-|-|-|-|-|pertencer a|-|-|
+|Municipio|-|-|-|-|-|-|-|-|-|-|-|-|-|-|pertencer a|-|-|
+|Código postal|-|-|-|-|-|-|-|-|-|-|-|-|-|-|pertencer a|-|-|
+|Ubicación|-|-|-|-|-|-|-|-|-|pertenecer a|-|tener|tener|tener|-|-|-|
+|Empleado|-|-|-|-|-|-|-|-|-|trabajar en|-|-|-|-|-|-|asumir|
+|Rol|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|ser asumido por|-|
