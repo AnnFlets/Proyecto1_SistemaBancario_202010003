@@ -77,6 +77,9 @@ La Tercera Forma Normal debe cumplir con la forma 2FN. Después verifica que los
 Una vez descrito el proceso de normalización y las tres formas normales a utilizar, se llevará a cabo dicho proceso con las entidades y atributos listados anteriormente.
 
 
+
+
+
 #### Clientes
 
 | ID | Nombre | Apellido | Número de cuenta | Tipo de cuenta | Saldo | Teléfono |
@@ -155,6 +158,9 @@ Los atributos que no son clave no pueden depender de otros atributos distintos a
 |...|...|
 
 
+
+
+
 #### Transacciones
 
 | ID Transacción | ID Cliente | Número de cuenta | Tipo de transacción | Monto | Fecha | Hora | Descripción | Sucursal/Agencia |
@@ -211,6 +217,276 @@ Tipo de transacción presenta redundancia de datos, por lo que se creará otra e
 |1|Transferencia|
 |2|Depósito|
 |3|Pago|
+|...|...|
+
+##### 3FN
+Los datos cumplen con la Tercera Formal Normal.
+
+
+
+
+
+###### Préstamos
+
+| ID Préstamo | ID Cliente | Monto del préstamo | Tasa de interés | Fecha de desembolso | Fecha de vencimiento | Saldo pendiente | Estado del préstamo |
+|:-----------:|:----------:|:------------------:|:---------------:|:-------------------:|:--------------------:|:---------------:|:---------------------:|
+|1|495798|964203.64|6.63|2023-11-19|2032-06-06|674174.18|Vencido|
+|2|42734|811935.67|13.42|2023-05-07|2028-08-29|756664.53|Activo|
+|3|540710|961457.89|13.68|2021-10-28|2030-03-10|200162.19|Vencido|
+|4|983331|78869.24|11.42|2023-05-14|2026-12-17|67546.61|Vencido|
+|5|409214|456168.05|6.93|2020-05-18|2026-07-08|729762.37|Activo|
+
+##### 1FN
+Los datos cumplen con la Primera Forma Normal.
+
+##### 2FN
+Estado del préstamo presenta redundancia de datos, por lo que se creará otra entidad para eliminar la duplicidad de datos.
+
+###### Préstamos
+
+| ID Préstamo | ID Cliente | Monto del préstamo | Tasa de interés | Fecha de desembolso | Fecha de vencimiento | Saldo pendiente | ID Estado del préstamo |
+|:-----------:|:----------:|:------------------:|:---------------:|:-------------------:|:--------------------:|:---------------:|:------------------------:|
+|1|495798|964203.64|6.63|2023-11-19|2032-06-06|674174.18|1|
+|2|42734|811935.67|13.42|2023-05-07|2028-08-29|756664.53|2|
+|3|540710|961457.89|13.68|2021-10-28|2030-03-10|200162.19|1|
+|4|983331|78869.24|11.42|2023-05-14|2026-12-17|67546.61|1|
+|5|409214|456168.05|6.93|2020-05-18|2026-07-08|729762.37|2|
+
+###### Estado del préstamo
+
+| ID | Estado préstamo |
+|:--:|:---------------:|
+|1|Vencido|
+|2|Activo|
+|...|...|
+
+##### 3FN
+Los datos cumplen con la Tercera Formal Normal.
+
+
+
+
+
+###### Tarjetas crédito
+
+| ID Tarjeta | ID Cliente | Número de tarjeta | Límite de crédito | Saldo actual | Fecha de emisión | Fecha de expiración | Estado | Fecha de corte | Día del ciclo |
+|:----------:|:----------:|:-----------------:|:-----------------:|:------------:|:----------------:|:-------------------:|:------:|:--------------:|:-------------:|
+|1|558120|4872410269895827|4344.96|20358.67|2022-02-09|2025-05-04|Bloqueada|2022-03-06|6|
+|2|443984|4780431200473540|48263.8|12583.92|2021-04-29|2025-11-10|Activa|2021-05-26|26|
+|3|709855|4653562424107275|37894.69|16274.3|2021-12-10|2026-08-08|Bloqueada|2022-01-08|8|
+|4|495584|4935123661880312|3610.3|31113.15|2020-11-21|2025-07-26|Bloqueada|2020-12-18|18|
+|5|621646|4918591621061050|35118.01|5054.92|2023-10-06|2028-02-05|Cancelada|2023-11-05|5|
+
+##### 1FN
+Los datos cumplen con la Primera Forma Normal.
+
+##### 2FN
+Estado presenta redundancia de datos, por lo que se creará otra entidad para eliminar la duplicidad de datos.
+
+###### Tarjetas crédito
+
+| ID Tarjeta | ID Cliente | Número de tarjeta | Límite de crédito | Saldo actual | Fecha de emisión | Fecha de expiración | ID Estado | Fecha de corte | Día del ciclo |
+|:----------:|:----------:|:-----------------:|:-----------------:|:------------:|:----------------:|:-------------------:|:---------:|:--------------:|:-------------:|
+|1|558120|4872410269895827|4344.96|20358.67|2022-02-09|2025-05-04|2|2022-03-06|6|
+|2|443984|4780431200473540|48263.8|12583.92|2021-04-29|2025-11-10|1|2021-05-26|26|
+|3|709855|4653562424107275|37894.69|16274.3|2021-12-10|2026-08-08|2|2022-01-08|8|
+|4|495584|4935123661880312|3610.3|31113.15|2020-11-21|2025-07-26|2|2020-12-18|18|
+|5|621646|4918591621061050|35118.01|5054.92|2023-10-06|2028-02-05|3|2023-11-05|5|
+
+###### Estado del préstamo
+
+| ID | Estado |
+|:--:|:------:|
+|1|Activo|
+|2|Bloqueado|
+|3|Cancelada|
+|...|...|
+
+##### 3FN
+Los datos cumplen con la Tercera Formal Normal.
+
+
+
+
+
+###### Sucursal/Agencia
+
+| ID | Nombre | Tipo | Departamento | Municipio | Dirección | Código postal | Teléfono |
+|:--:|:------:|:----:|:------------:|:---------:|:---------:|:-------------:|:--------:|
+|1|Sucursal Antigua Guatemala 1|Sucursal|Sacatepéquez|Antigua Guatemala|Zona 7|91405|+502 8036-8423|
+|2|Sucursal Escuintla 2|Sucursal|Escuintla|Escuintla|Zona 1|97145|+502 9525-7114|
+|3|Sucursal Quetzaltenango 3|Sucursal|Quetzaltenango|Quetzaltenango|Zona 1|53915|+502 2873-4763|
+|4|Sucursal Cobán 4|Sucursal|Alta Verapaz|Cobán|Zona 8|31535|+502 6809-5562|
+|5|Sucursal Flores 5|Sucursal|Petén|Flores|Zona 10|63389|+502 5942-1959|
+
+Se modificará el nombre de la entidad a Punto servicio para que sea más general.
+
+##### 1FN
+Los datos cumplen con la Primera Forma Normal.
+
+##### 2FN
+Tipo, Departamento, Municipio y Código postal presentan redundancia de datos, por lo que se creará otra entidad para eliminar la duplicidad de datos. No tomaré en cuenta dirección, en caso de que se ingrese una dirección con calles, avenidas y demás información.
+
+###### Puntos servicio
+
+| ID | Nombre | ID Tipo | ID Departamento | ID Municipio | Dirección | ID Código postal | Teléfono |
+|:--:|:------:|:-------:|:---------------:|:------------:|:---------:|:----------------:|:--------:|
+|1|Sucursal Antigua Guatemala 1|1|1|1|Zona 7|1|+502 8036-8423|
+|2|Sucursal Escuintla 2|1|2|2|Zona 1|2|+502 9525-7114|
+|3|Sucursal Quetzaltenango 3|1|3|3|Zona 1|3|+502 2873-4763|
+|4|Sucursal Cobán 4|1|4|4|Zona 8|4|+502 6809-5562|
+|5|Sucursal Flores 5|1|5|5|Zona 10|5|+502 5942-1959|
+
+###### Tipo
+
+| ID | Tipo |
+|:--:|:----:|
+|1|Sucursal|
+|2|Agencia|
+
+###### Departamento
+
+| ID | Departamento |
+|:--:|:------------:|
+|1|Sacatepéquez|
+|2|Escuintla|
+|3|Quetzaltenango|
+|4|Alta Verapaz|
+|5|Petén|
+|...|...|
+
+###### Municipio
+
+| ID | Municipio |
+|:--:|:---------:|
+|1|Antigua Guatemala|
+|2|Escuintla|
+|3|Quetzaltenango|
+|4|Cobán|
+|5|Flores|
+|...|...|
+
+###### Código postal
+
+| ID | Código postal |
+|:--:|:-------------:|
+|1|91405|
+|2|97145|
+|3|53915|
+|4|31535|
+|5|63389|
+|...|...|
+
+##### 3FN
+Los datos cumplen con la Tercera Formal Normal.
+En este caso, ID Departamento, ID Municipio, Dirección y ID Código postal dependen entre sí para formar una ubicación, por lo que se creará otra entidad para contener dichos valores.
+
+###### Puntos servicio
+
+| ID | Nombre | ID Tipo | ID Departamento | ID Municipio | Dirección | ID Código postal | Teléfono |
+|:--:|:------:|:-------:|:---------------:|:------------:|:---------:|:----------------:|:--------:|
+|1|Sucursal Antigua Guatemala 1|1|1|1|Zona 7|1|+502 8036-8423|
+|2|Sucursal Escuintla 2|1|2|2|Zona 1|2|+502 9525-7114|
+|3|Sucursal Quetzaltenango 3|1|3|3|Zona 1|3|+502 2873-4763|
+|4|Sucursal Cobán 4|1|4|4|Zona 8|4|+502 6809-5562|
+|5|Sucursal Flores 5|1|5|5|Zona 10|5|+502 5942-1959|
+
+###### Tipo
+
+| ID | Tipo |
+|:--:|:----:|
+|1|Sucursal|
+|2|Agencia|
+
+###### Ubicación
+
+| ID | ID Departamento | ID Municipio | Dirección | Código postal |
+|:--:|:---------------:|:------------:|:---------:|:-------------:|
+|1|1|1|Zona 7|1|
+|2|2|2|Zona 1|2|
+|3|3|3|Zona 1|3|
+|4|4|4|Zona 8|4|
+|5|5|5|Zona 10|5|
+|...|...|...|...|...|
+
+###### Departamento
+
+| ID | Departamento |
+|:--:|:------------:|
+|1|Sacatepéquez|
+|2|Escuintla|
+|3|Quetzaltenango|
+|4|Alta Verapaz|
+|5|Petén|
+|...|...|
+
+###### Municipio
+
+| ID | Municipio |
+|:--:|:---------:|
+|1|Antigua Guatemala|
+|2|Escuintla|
+|3|Quetzaltenango|
+|4|Cobán|
+|5|Flores|
+|...|...|
+
+###### Código postal
+
+| ID | Código postal |
+|:--:|:-------------:|
+|1|91405|
+|2|97145|
+|3|53915|
+|4|31535|
+|5|63389|
+|...|...|
+
+
+
+
+
+###### Empleados
+
+| ID | Nombre | Apellido | Rol | Departamento | Sucursal/Asignación | Teléfono |
+|:--:|:------:|:--------:|:---:|:------------:|:-------------------:|:--------:|
+|1|Nombre_1|Apellido_1|Auditor Interno|Petén|Sucursal/Agencia 528|+502 7815-2167|
+|2|Nombre_2|Apellido_2|Administrador|Chiquimula|Sucursal/Agencia 171|+502 3808-9764|
+|3|Nombre_3|Apellido_3|Atención al Cliente|Jutiapa|Sucursal/Agencia 103|+502 4899-1699|
+|4|Nombre_4|Apellido_4|Oficial de Crédito|Quetzaltenango|Sucursal/Agencia 36|+502 3452-1726|
+|5|Nombre_5|Apellido_5|Soporte Técnico|Jutiapa|Sucursal/Agencia 583|+502 8283-6524|
+
+##### 1FN
+La columna sucursal/asignación no cumple con la Primera Forma Normal. En este caso, se debe asociar a la tabla de Puntos servicio por medio del ID de la misma
+
+| ID | Nombre | Apellido | Rol | Departamento | ID Punto venta | Teléfono |
+|:--:|:------:|:--------:|:---:|:------------:|:--------------:|:--------:|
+|1|Nombre_1|Apellido_1|Auditor Interno|Petén|528|+502 7815-2167|
+|2|Nombre_2|Apellido_2|Administrador|Chiquimula|171|+502 3808-9764|
+|3|Nombre_3|Apellido_3|Atención al Cliente|Jutiapa|103|+502 4899-1699|
+|4|Nombre_4|Apellido_4|Oficial de Crédito|Quetzaltenango|36|+502 3452-1726|
+|5|Nombre_5|Apellido_5|Soporte Técnico|Jutiapa|583|+502 8283-6524|
+
+##### 2FN
+Rol y Departamento presentan redundancia de datos, por lo que se creará otra entidad para eliminar la duplicidad de datos. En el caso de Departamento, esta columna se quitará, ya que la sucursal indica la ubicación y con ello el departamento.
+
+| ID | Nombre | Apellido | ID Rol | ID Punto venta | Teléfono |
+|:--:|:------:|:--------:|:------:|:--------------:|:--------:|
+|1|Nombre_1|Apellido_1|1|528|+502 7815-2167|
+|2|Nombre_2|Apellido_2|2|171|+502 3808-9764|
+|3|Nombre_3|Apellido_3|3|103|+502 4899-1699|
+|4|Nombre_4|Apellido_4|4|36|+502 3452-1726|
+|5|Nombre_5|Apellido_5|5|583|+502 8283-6524|
+
+###### Rol
+
+| ID | Rol |
+|:--:|:---:|
+|1|Auditor Interno|
+|2|Administrador|
+|3|Atención al Cliente|
+|4|Oficial de Crédito|
+|5|Soporte Técnico|
 |...|...|
 
 ##### 3FN
